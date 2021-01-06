@@ -17,12 +17,21 @@ import InputLabel from '@material-ui/core/InputLabel';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import clsx from 'clsx';
 import FormControl from '@material-ui/core/FormControl';
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import "typeface-cormorant";
+
+const theme = createMuiTheme({
+    typography: {
+      fontFamily: [
+        'Cormorant',
+        'serif',
+      ].join(','),
+  },});
 
 const useStyles = makeStyles(() => ({
       root: {
           marginLeft: '10%',
           width: '80%',
-          marginTop: '15%',
       },
       firsttitle: {
           fontSize: '40px',
@@ -44,7 +53,13 @@ const useStyles = makeStyles(() => ({
       },
       textField: {
         width: '25ch',
-      }
+      },
+      todotext: {
+          fontSize: '40px',
+          color: 'grey',
+          marginTop: '15%',
+          marginLeft: '10%'
+      },
   }));
 
 export default function Login(props) {
@@ -118,65 +133,72 @@ export default function Login(props) {
         })
     }
     return (
-        <Card className={classes.root}>
-        <CardContent>
-            <Typography className={classes.firsttitle} color="textSecondary" gutterBottom>
-            {h}
-            </Typography>
-           
-        </CardContent>
-        <CardActions>
-            <TextField 
-                id="outlined-basic" 
-                label="login" 
-                variant="outlined"  
-                value={login}
-                className={classes.input}
-                onChange={(event)=>{
-                    setLogin(event.target.value)
-                }}/>
-                <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
-                <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
-                <OutlinedInput
-                    variant="outlined"  
-                    type="password" 
-                    onChange={(event)=>{
-                        setPass(event.target.value)
-                    }}
-                    id="outlined-adornment-password"
-                    type={values.showPassword ? 'text' : 'password'}
-                    value={values.password}
-                    onChange={handleChange('password')}
-                    endAdornment={
-                    <InputAdornment position="end">
-                        <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
-                        edge="end"
-                        >
-                        {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                        </IconButton>
-                    </InputAdornment>
-                    }
-                    labelWidth={70}
-                />
-                </FormControl>
-            <button
-                className={classes.buttontrans}
-                value={authOrReg}
-                onClick={(event)=>{
-                    sendRequest(event)
-                }}
-            >Войти</button>
-        </CardActions>
-        <CardActions>
-        <Button 
-            onClick={setParameters}
-            variant="outlined"
-            color="primary">
-        {p}</Button>
-        </CardActions>
-      </Card>
+        <ThemeProvider theme={theme}>
+            <div>
+                <h1
+                className={classes.todotext}
+                >To-Do List</h1>
+                <Card className={classes.root}>
+                <CardContent>
+                    <Typography className={classes.firsttitle} color="textSecondary" gutterBottom>
+                    {h}
+                    </Typography>
+                
+                </CardContent>
+                <CardActions>
+                    <TextField 
+                        id="outlined-basic" 
+                        label="login" 
+                        variant="outlined"  
+                        value={login}
+                        className={classes.input}
+                        onChange={(event)=>{
+                            setLogin(event.target.value)
+                        }}/>
+                        <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
+                        <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+                        <OutlinedInput
+                            variant="outlined"  
+                            type="password" 
+                            onChange={(event)=>{
+                                setPass(event.target.value)
+                            }}
+                            id="outlined-adornment-password"
+                            type={values.showPassword ? 'text' : 'password'}
+                            value={values.password}
+                            onChange={handleChange('password')}
+                            endAdornment={
+                            <InputAdornment position="end">
+                                <IconButton
+                                aria-label="toggle password visibility"
+                                onClick={handleClickShowPassword}
+                                onMouseDown={handleMouseDownPassword}
+                                edge="end"
+                                >
+                                {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                                </IconButton>
+                            </InputAdornment>
+                            }
+                            labelWidth={70}
+                        />
+                        </FormControl>
+                    <button
+                        className={classes.buttontrans}
+                        value={authOrReg}
+                        onClick={(event)=>{
+                            sendRequest(event)
+                        }}
+                    >Войти</button>
+                </CardActions>
+                <CardActions>
+                <Button 
+                    onClick={setParameters}
+                    variant="outlined"
+                    color="primary">
+                {p}</Button>
+                </CardActions>
+            </Card>
+        </div>
+    </ThemeProvider>
     )
 }
