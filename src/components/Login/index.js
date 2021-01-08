@@ -8,7 +8,6 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import './index.css';
 import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Visibility from '@material-ui/icons/Visibility';
@@ -17,16 +16,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import clsx from 'clsx';
 import FormControl from '@material-ui/core/FormControl';
-import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import "typeface-cormorant";
 
-const theme = createMuiTheme({
-    typography: {
-      fontFamily: [
-        'Cormorant',
-        'serif',
-      ].join(','),
-  },});
 
 const useStyles = makeStyles(() => ({
       root: {
@@ -62,8 +53,8 @@ const useStyles = makeStyles(() => ({
       },
   }));
 
-export default function Login(props) {
-    const classes = useStyles();
+  export default function Login(props) {
+ 
     const [values, setValues] = React.useState({
       amount: '',
       password: '',
@@ -71,19 +62,20 @@ export default function Login(props) {
       weightRange: '',
       showPassword: false,
     });
-  
-    const handleChange = (prop) => (event) => {
-      setValues({ ...values, [prop]: event.target.value });
-    };
-  
-    const handleClickShowPassword = () => {
-      setValues({ ...values, showPassword: !values.showPassword });
-    };
-  
-    const handleMouseDownPassword = (event) => {
-      event.preventDefault();
-    };  
 
+    const handleChange = (prop) => (event) => {
+        setValues({ ...values, [prop]: event.target.value });
+      };
+    
+      const handleClickShowPassword = () => {
+        setValues({ ...values, showPassword: !values.showPassword });
+      };
+    
+      const handleMouseDownPassword = (event) => {
+        event.preventDefault();
+      };
+
+    const classes = useStyles();
     const [h, setH] = useState('Войти')
     const [p, setP] = useState('Зарегистрироваться')
     const [login, setLogin] = useState('')
@@ -133,19 +125,18 @@ export default function Login(props) {
         })
     }
     return (
-        <ThemeProvider theme={theme}>
             <div>
                 <h1
                 className={classes.todotext}
                 >To-Do List</h1>
                 <Card className={classes.root}>
-                <CardContent>
-                    <Typography className={classes.firsttitle} color="textSecondary" gutterBottom>
-                    {h}
-                    </Typography>
-                
-                </CardContent>
-                <CardActions>
+                    <CardContent>
+                        <Typography className={classes.firsttitle} color="textSecondary" gutterBottom>
+                        {h}
+                        </Typography>
+                    
+                    </CardContent>
+                    <CardActions>
                     <TextField 
                         id="outlined-basic" 
                         label="login" 
@@ -154,51 +145,64 @@ export default function Login(props) {
                         className={classes.input}
                         onChange={(event)=>{
                             setLogin(event.target.value)
-                        }}/>
-                        <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
-                        <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
-                        <OutlinedInput
-                            variant="outlined"  
-                            type="password" 
-                            onChange={(event)=>{
-                                setPass(event.target.value)
-                            }}
-                            id="outlined-adornment-password"
-                            type={values.showPassword ? 'text' : 'password'}
-                            value={values.password}
-                            onChange={handleChange('password')}
-                            endAdornment={
-                            <InputAdornment position="end">
-                                <IconButton
-                                aria-label="toggle password visibility"
-                                onClick={handleClickShowPassword}
-                                onMouseDown={handleMouseDownPassword}
-                                edge="end"
-                                >
-                                {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                                </IconButton>
-                            </InputAdornment>
-                            }
-                            labelWidth={70}
-                        />
-                        </FormControl>
+                    }}/>
+                    <FormControl 
+                        className={clsx(classes.margin, classes.textField)} 
+                        variant="outlined" 
+                        value={pass}
+                        onChange={(event)=>{
+                            setPass(event.target.value)
+                        }}>
+                    <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+                    <OutlinedInput
+                        id="outlined-adornment-password"
+                        type={values.showPassword ? 'text' : 'password'}
+                        value={values.password}
+                        onChange={handleChange('password')}
+                        endAdornment={
+                        <InputAdornment position="end">
+                            <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={handleClickShowPassword}
+                            onMouseDown={handleMouseDownPassword}
+                            edge="end"
+                            >
+                            {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                            </IconButton>
+                        </InputAdornment>
+                        }
+                        labelWidth={70}
+                    />
+                    </FormControl>
                     <button
                         className={classes.buttontrans}
                         value={authOrReg}
                         onClick={(event)=>{
                             sendRequest(event)
                         }}
-                    >Войти</button>
-                </CardActions>
-                <CardActions>
-                <Button 
-                    onClick={setParameters}
-                    variant="outlined"
-                    color="primary">
-                {p}</Button>
-                </CardActions>
-            </Card>
-        </div>
-    </ThemeProvider>
+                    >
+                        Войти
+                    </button>
+                    </CardActions>
+                    <CardActions>
+                    <Button 
+                        onClick={setParameters}
+                        variant="outlined"
+                        color="primary">
+                    {p}</Button>
+                    </CardActions>
+                </Card>
+            </div>
     )
 }
+
+
+
+
+
+
+
+
+
+
+ 
