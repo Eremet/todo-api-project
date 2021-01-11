@@ -17,6 +17,7 @@ import OutlinedInput from '@material-ui/core/OutlinedInput';
 import clsx from 'clsx';
 import FormControl from '@material-ui/core/FormControl';
 import "typeface-cormorant";
+import './index.css'
 
 
 const useStyles = makeStyles(() => ({
@@ -31,16 +32,6 @@ const useStyles = makeStyles(() => ({
       input: {
           width: '600px',
           Height: '30px'
-      },
-      buttontrans: {
-          height: '55px',
-          backgroundColor: 'blue',
-          border: '5px',
-          borderRadius: '5px',
-          width: '100px',
-          fontSize: '20px',
-          color: 'white',
-          cursor: 'pointer',
       },
       textField: {
         width: '25ch',
@@ -175,7 +166,7 @@ const useStyles = makeStyles(() => ({
                     />
                     </FormControl>
                     <button
-                        className={classes.buttontrans}
+                        className='buttontrans'
                         value={authOrReg}
                         onClick={(event)=>{
                             sendRequest(event)

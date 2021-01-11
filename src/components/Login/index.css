@@ -1,0 +1,25 @@
+.buttontrans:hover{
+    color: white;
+    background-color: blue;
+    border-radius: 5px;
+    border: 1px solid blue;
+}
+.buttontrans{
+    height: 55px;
+    background-color: white;
+    border-radius: 5px;
+    width: 100px;
+    font-size: 20px;
+    color: blue;
+    cursor: pointer;
+    border: 1px solid blue;
+}
+
+/* height: '55px',
+backgroundColor: 'blue',
+border: '5px',
+borderRadius: '5px',
+width: '100px',
+fontSize: '20px',
+color: 'white',
+cursor: 'pointer', */

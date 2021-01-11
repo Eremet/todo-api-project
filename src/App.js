@@ -3,7 +3,9 @@ import Main from './components/Main'
 
 export default function App() {
   return (
-    <div> 
+    <div  style={{ 
+      marginTop: '-5%'
+    }}> 
       <Main/>
     </div>
   )
